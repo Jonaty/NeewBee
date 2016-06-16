@@ -17,4 +17,6 @@ class PublicacionController extends Controller
 
      return redirect()->route('home')->with('info', 'Publicacion exitosa');
     }
+
+   
 }
