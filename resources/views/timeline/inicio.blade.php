@@ -40,34 +40,36 @@
          @foreach($publicaciones as $publicacion)
          
          <div class="media">
-         	<a href="{{ route('usuario.perfil', ['nombre' => $publicacion->user->nombre]) }}" class="pull-left">
-         		<img src="{{ $publicacion->user->avatarUrl() }}" alt="{{ $publicacion->user->nombre() }}" class="media-object">
+         	<a href="{{ route('usuario.perfil', ['nombre' => $publicacion->usuario->nombre]) }}" class="pull-left">
+         		<img src="{{ $publicacion->usuario->avatarUrl() }}" alt="{{ $publicacion->usuario->nombre() }}" class="media-object">
          	</a>
       
          <div class="media-body">
-         	<h4 class="media-heading"><a href="{{ route('usuario.perfil', ['nombre' => $publicacion->user->nombre]) }}">{{ $publicacion->user->nombre() }}</a></h4>
+         	<h4 class="media-heading"><a href="{{ route('usuario.perfil', ['nombre' => $publicacion->usuario->nombre]) }}">{{ $publicacion->usuario->nombre() }}</a></h4>
          	<p>{{ $publicacion->publicacion }}</p>
          	<ul class="list-inline">
          		<li>{{ $publicacion->created_at->diffForHumans() }}</li>
          		<li><a href="#">Me gusta</a></li>
          		<li>10 Me gusta</li>
          	</ul>
-
-         <!--<div class="media">
-         	<a href="" class="pull-left">
-         		<img src="" alt="" class="media-object">
+         
+         @foreach($publicacion->respuestas as $respuesta)
+         <div class="media">
+         	<a href="{{ route('usuario.perfil', ['nombre' => $respuesta->usuario->nombre]) }}" class="pull-left">
+         		<img src="{{ $respuesta->usuario->avatarUrl() }}" alt="{{ $respuesta->usuario->nombre() }}" class="media-object">
          	</a>
 
          	<div class="media-body">
-         		<h5 class="media-heading"><a href="">Jose</a></h5>
-         		<p>Si, lo es</p>
+         		<h5 class="media-heading"><a href="{{ route('usuario.perfil', ['nombre' => $respuesta->usuario->nombre]) }}">{{ $respuesta->usuario->nombre() }}</a></h5>
+         		<p>{{ $respuesta->publicacion }}</p>
          		<ul class="list-inline">
-         			<li>8 minutos</li>
+         			<li>{{ $respuesta->created_at->diffForHumans() }}</li>
          			<li><a href="">Like</a></li>
          			<li>10 Me gusta</li>
          		</ul>
          	</div>
-         </div>-->
+         </div>
+         @endforeach
 
          <form action="{{ route('posteo.respuesta', ['statusId' => $publicacion->id]) }}" role="form" method="post">
          	<div class="form-group{{ $errors->has("reply-{$publicacion->id}") ? ' has-error' : '' }}">

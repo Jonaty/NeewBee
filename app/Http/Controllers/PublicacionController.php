@@ -37,16 +37,16 @@ class PublicacionController extends Controller
           	return redirect()->route('home');
           }
 
-          if(!Auth::user()->tieneAmigosCon($status->user) && Auth::user()->id !== $status->user->id)
+          if(!Auth::user()->tieneAmigosCon($status->usuario) && Auth::user()->id !== $status->usuario->id)
           {
           	return redirect()->route('home');
           }
     	
-    	$reply = Publicacion::create([
+    	$respuesta = Publicacion::create([
             'publicacion' => $request->input("reply-{$statusId}"),
-    		])->user()->associate(Auth::user());
+    		])->usuario()->associate(Auth::user());
 
-    	$status->replies()->save($reply);
+    	$status->respuestas()->save($respuesta);
 
     	return redirect()->back();
     }

@@ -10,7 +10,7 @@ class Publicacion extends Model
 
   protected $fillable = ['publicacion'];
 
-  public function user()
+  public function usuario()
   {
   	return $this->belongsTo('NeewBee\Models\User', 'usuario_id');
   }
@@ -20,7 +20,7 @@ class Publicacion extends Model
   	return $this->whereNull('parent_id');
   }
 
-  public function replies()
+  public function respuestas()
   {
   	return $this->hasMany('NeewBee\Models\Publicacion', 'parent_id');
   }
