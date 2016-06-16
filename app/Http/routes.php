@@ -78,3 +78,17 @@ Route::get('/usuario/{nombre}', [
     'as' => 'usuario.perfil',
     ]);
 
+/*Actualizar Perfil */
+
+Route::get('/perfil/editar', [
+
+    'uses' => '\NeewBee\Http\Controllers\PerfilController@actualizarDatosPerfil',
+    'as' => 'perfil.editar',
+    'middleware' => ['auth'],
+    ]);
+
+Route::post('/perfil/editar', [
+
+    'uses' => '\NeewBee\Http\Controllers\PerfilController@obtenerDatosActualizar',
+    'middleware' => ['auth'],
+    ]);
