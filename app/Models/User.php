@@ -17,4 +17,15 @@ class User extends Model implements AuthenticatableContract
 
 	protected $hidden = ['password', 'remember_token'];
 
+	/* Obtener Nombre */
+
+    public function nombre()
+  {
+	if($this->nombre && $this->apellidos)
+	{
+		return "{$this->nombre} {$this->apellidos}";
+	}
+  }
+
+
 }

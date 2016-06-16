@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => NeewBee\User::class,
+            'model' => NeewBee\Models\User::class,
         ],
 
         // 'users' => [

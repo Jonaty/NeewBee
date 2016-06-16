@@ -38,3 +38,27 @@ Route::post('/registro', [
     'uses' => '\NeewBee\Http\Controllers\AuthController@datosRegistro',
     'middleware' => ['guest'],
 	]);
+
+/* Login */
+
+Route::get('/login', [
+     
+    'uses' => '\NeewBee\Http\Controllers\AuthController@login',
+    'as' => 'auth.login',
+    'middleware' => ['guest'],
+	]);
+
+Route::post('/login', [
+     
+    'uses' => '\NeewBee\Http\Controllers\AuthController@validarDatosLogin',
+    'middleware' => ['guest'],
+	]);
+
+/* Salir */
+
+Route::get('/salir', [
+
+    'uses' => '\NeewBee\Http\Controllers\AuthController@salir',
+    'as' => 'salir',
+    ]);
+

@@ -5,7 +5,7 @@
 		</div>
 
 		<div class="collapse navbar-collapse">
-			<!-- @if(Auth::check()) -->
+			@if(Auth::check())
 			<ul class="nav navbar-nav">
 				<li><a href="{{ route('home') }}">Timeline</a></li>
 				<li><a href="#">Amigos</a></li>
@@ -19,17 +19,17 @@
 				<button class="btn btn-default" type="submit">Buscar</button>
 			</form>
 
-			<!--@endif-->
+			@endif
 
 			<ul class="nav navbar-nav navbar-left">
-			<!--@if(Auth::check()) -->
-				<li><a href="#">Naty</a></li>
+			@if(Auth::check())
+				<li><a href="#">{{ Auth::user()->nombre() }}</a></li>
 				<li><a href="#">Actualizar Perfil</a></li>
-				<li><a href="#">Salir</a></li>
-			<!--@else-->
+				<li><a href="{{ route('salir') }}">Salir</a></li>
+			@else
 				<li><a href="{{ route('auth.registro') }}">Registro</a></li>
-				<li><a href="#">Login</a></li>
-		    <!--@endif-->
+				<li><a href="{{ route('auth.login') }}">Login</a></li>
+		    @endif
 			</ul>
 		</div>
 	</div>
