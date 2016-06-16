@@ -23,7 +23,7 @@
 
 			<ul class="nav navbar-nav navbar-left">
 			@if(Auth::check())
-				<li><a href="#">{{ Auth::user()->nombre() }}</a></li>
+				<li><a href="{{ route('usuario.perfil', ['nombre' => Auth::user()->nombre]) }}">{{ Auth::user()->nombre() }}</a></li>
 				<li><a href="#">Actualizar Perfil</a></li>
 				<li><a href="{{ route('salir') }}">Salir</a></li>
 			@else

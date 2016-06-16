@@ -70,3 +70,11 @@ Route::get('/buscar', [
     'as' => 'buscar.resultados',
     ]);
 
+/* Perfil */
+
+Route::get('/usuario/{nombre}', [
+
+    'uses' => '\NeewBee\Http\Controllers\PerfilController@perfil',
+    'as' => 'usuario.perfil',
+    ]);
+
