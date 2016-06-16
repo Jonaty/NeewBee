@@ -9,8 +9,72 @@
 		<!-- Informacion de usuario y status -->
        	<h4>Perfil</h4>
 		@include('usuario.partials.usuarioblock')
-		<hr>		
+		<hr>
+       
+        @if(!$publicaciones->count())
+        <p>{{ $user->nombre() }} no tiene nada publicado todavía</p>
 
+      @else
+          
+         @foreach($publicaciones as $publicacion)
+         
+         <div class="media">
+         	<a href="{{ route('usuario.perfil', ['nombre' => $publicacion->usuario->nombre]) }}" class="pull-left">
+         		<img src="{{ $publicacion->usuario->avatarUrl() }}" alt="{{ $publicacion->usuario->nombre() }}" class="media-object">
+         	</a>
+      
+         <div class="media-body">
+         	<h4 class="media-heading"><a href="{{ route('usuario.perfil', ['nombre' => $publicacion->usuario->nombre]) }}">{{ $publicacion->usuario->nombre() }}</a></h4>
+         	<p>{{ $publicacion->publicacion }}</p>
+         	<ul class="list-inline">
+         		<li>{{ $publicacion->created_at->diffForHumans() }}</li>
+         		<li><a href="#">Me gusta</a></li>
+         		<li>10 Me gusta</li>
+         	</ul>
+         
+         @foreach($publicacion->respuestas as $respuesta)
+         <div class="media">
+         	<a href="{{ route('usuario.perfil', ['nombre' => $respuesta->usuario->nombre]) }}" class="pull-left">
+         		<img src="{{ $respuesta->usuario->avatarUrl() }}" alt="{{ $respuesta->usuario->nombre() }}" class="media-object">
+         	</a>
+
+         	<div class="media-body">
+         		<h5 class="media-heading"><a href="{{ route('usuario.perfil', ['nombre' => $respuesta->usuario->nombre]) }}">{{ $respuesta->usuario->nombre() }}</a></h5>
+         		<p>{{ $respuesta->publicacion }}</p>
+         		<ul class="list-inline">
+         			<li>{{ $respuesta->created_at->diffForHumans() }}</li>
+         			<li><a href="">Like</a></li>
+         			<li>10 Me gusta</li>
+         		</ul>
+         	</div>
+         </div>
+         @endforeach
+
+
+         @if($authUsuarioIsAmigo || Auth::user()->id === $publicacion->usuario->id)
+         <form action="{{ route('posteo.respuesta', ['statusId' => $publicacion->id]) }}" role="form" method="post">
+         	<div class="form-group{{ $errors->has("reply-{$publicacion->id}") ? ' has-error' : '' }}">
+         		<textarea name="reply-{{ $publicacion->id }}" rows="2" class="form-control" placeholder="Comenta este estado"></textarea>
+              
+              @if ($errors->has("reply-{$publicacion->id}"))
+              <span class="help-block">{{ $errors->first("reply-{$publicacion->id}") }}</span>
+              @endif
+
+         	</div>
+
+         	<input type="submit" value="Comentar" class="btn btn-primary btn-sm">
+
+         	<input type="hidden" name="_token" value="{{ Session::token() }}">
+         </form>
+         @endif
+
+         </div>
+     </div>
+
+         @endforeach
+
+      @endif
+		
 	</div>
 
 	<div class="col-lg-4 col-lg-offset-3">	

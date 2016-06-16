@@ -17,7 +17,10 @@ class PerfilController extends Controller
     	{
     		abort(404);
     	}
-    	return view('usuario.perfil')->with('user', $user);
+
+        $publicaciones = $user->publicaciones()->notReply()->get();
+
+    	return view('usuario.perfil')->with('user', $user)->with('publicaciones', $publicaciones)->with('authUsuarioIsAmigo', Auth::user()->tieneAmigosCon($user));
     }
 
 /*Actualizar Perfil */
