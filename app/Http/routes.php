@@ -127,5 +127,13 @@ Route::post('/publicar', [
      'middleware' => ['auth'],
     ]);
 
+/* Comentar */
+
+Route::post('/publicar/{statusId}/respuesta', [
+
+     'uses' => '\NeewBee\Http\Controllers\PublicacionController@postReply',
+     'as' => 'posteo.respuesta',
+     'middleware' => ['auth'],
+    ]);
 
 

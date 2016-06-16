@@ -14,7 +14,7 @@ class HomeController extends Controller
 
     	if(Auth::check())
     	{
-    		$publicaciones = Publicacion::where(function($query)
+    		$publicaciones = Publicacion::notReply()->where(function($query)
     		{
     			return $query->where('usuario_id', Auth::user()->id)->orWhereIn('usuario_id', Auth::user()->amigos()->lists('id'));
 

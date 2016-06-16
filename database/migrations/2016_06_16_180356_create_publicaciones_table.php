@@ -14,12 +14,10 @@ class CreatePublicacionesTable extends Migration
     {
         Schema::create('publicaciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('usuario_id')->unsigned();
+            $table->integer('usuario_id');
             $table->integer('parent_id')->nullable();
             $table->text('publicacion');
             $table->timestamps();
-
-            $table->foreign('usuario_id')->references('id')->on('users');
         });
     }
 

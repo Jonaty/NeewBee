@@ -10,9 +10,19 @@ class Publicacion extends Model
 
   protected $fillable = ['publicacion'];
 
-  public function usuario()
+  public function user()
   {
   	return $this->belongsTo('NeewBee\Models\User', 'usuario_id');
+  }
+
+  public function scopeNotReply($query)
+  {
+  	return $this->whereNull('parent_id');
+  }
+
+  public function replies()
+  {
+  	return $this->hasMany('NeewBee\Models\Publicacion', 'parent_id');
   }
 }
 

@@ -40,12 +40,12 @@
          @foreach($publicaciones as $publicacion)
          
          <div class="media">
-         	<a href="{{ route('usuario.perfil', ['nombre' => $publicacion->usuario->nombre]) }}" class="pull-left">
-         		<img src="{{ $publicacion->usuario->avatarUrl() }}" alt="{{ $publicacion->usuario->nombre() }}" class="media-object">
+         	<a href="{{ route('usuario.perfil', ['nombre' => $publicacion->user->nombre]) }}" class="pull-left">
+         		<img src="{{ $publicacion->user->avatarUrl() }}" alt="{{ $publicacion->user->nombre() }}" class="media-object">
          	</a>
       
          <div class="media-body">
-         	<h4 class="media-heading"><a href="{{ route('usuario.perfil', ['nombre' => $publicacion->usuario->nombre]) }}">{{ $publicacion->usuario->nombre() }}</a></h4>
+         	<h4 class="media-heading"><a href="{{ route('usuario.perfil', ['nombre' => $publicacion->user->nombre]) }}">{{ $publicacion->user->nombre() }}</a></h4>
          	<p>{{ $publicacion->publicacion }}</p>
          	<ul class="list-inline">
          		<li>{{ $publicacion->created_at->diffForHumans() }}</li>
@@ -69,9 +69,14 @@
          	</div>
          </div>-->
 
-         <form action="#" role="form" method="post">
-         	<div class="form-group">
-         		<textarea name="reply-1" rows="2" class="form-control" placeholder="Comenta este estado"></textarea>
+         <form action="{{ route('posteo.respuesta', ['statusId' => $publicacion->id]) }}" role="form" method="post">
+         	<div class="form-group{{ $errors->has("reply-{$publicacion->id}") ? ' has-error' : '' }}">
+         		<textarea name="reply-{{ $publicacion->id }}" rows="2" class="form-control" placeholder="Comenta este estado"></textarea>
+              
+              @if ($errors->has("reply-{$publicacion->id}"))
+              <span class="help-block">{{ $errors->first("reply-{$publicacion->id}") }}</span>
+              @endif
+
          	</div>
 
          	<input type="submit" value="Comentar" class="btn btn-primary btn-sm">
