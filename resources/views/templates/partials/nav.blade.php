@@ -8,7 +8,7 @@
 			@if(Auth::check())
 			<ul class="nav navbar-nav">
 				<li><a href="{{ route('home') }}">Timeline</a></li>
-				<li><a href="#">Amigos</a></li>
+				<li><a href="{{ route('amigos.inicio') }}">Amigos</a></li>
 			</ul>
 
 			<form action="{{ route('buscar.resultados') }}" class="navbar-form navbar-left" role="buscar">

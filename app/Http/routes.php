@@ -92,3 +92,19 @@ Route::post('/perfil/editar', [
     'uses' => '\NeewBee\Http\Controllers\PerfilController@obtenerDatosActualizar',
     'middleware' => ['auth'],
     ]);
+
+/* Amigos */
+
+Route::get('/amigos', [
+
+    'uses' => '\NeewBee\Http\Controllers\AmigoController@inicio',
+    'as' => 'amigos.inicio',
+    'middleware' => ['auth'],
+    ]);
+
+Route::get('/amigos/agregar/{nombre}', [
+
+    'uses' => '\NeewBee\Http\Controllers\AmigoController@agregarAmigo',
+    'as' => 'amigos.agregar',
+    'middleware' => ['auth'],
+    ]);

@@ -33,8 +33,24 @@ class User extends Model implements AuthenticatableContract
    public function avatarUrl()
  {
  	return "https://www.gravatar.com/avatar/{{ md5($this->email)}}?d=mm&s=40";
+ }
 
-}
+ /* Relacion de amigos */
+
+ public function misAmigos()
+ {
+ 	return $this->belongsToMany('NeewBee\Models\User', 'amigos', 'usuario_id','amigo_id' );
+ }
+
+ public function amigoDe()
+ {
+ 	return $this->belongsToMany('NeewBee\Models\User', 'amigos', 'amigo_id', 'usuario_id');
+ }
+
+ public function amigos()
+ {
+ 	return $this->misAmigos()->wherePivot('aceptacion', true)->get()->merge($this->amigoDe()->wherePivot('aceptacion', true)->get());
+ }
 
 
 
