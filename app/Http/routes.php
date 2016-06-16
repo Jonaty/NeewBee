@@ -16,3 +16,25 @@ Route::get('/', [
      'uses' => '\NeewBee\Http\Controllers\HomeController@inicio',
      'as' => 'home',
 	]);
+
+/*Alertas */
+
+Route::get('/alertas', function()
+{
+   return redirect()->route('home')->with('info', 'Estas registrado');
+});
+
+/* Registro */
+
+Route::get('/registro', [
+    
+    'uses' => '\NeewBee\Http\Controllers\AuthController@registro',
+    'as' => 'auth.registro',
+    'middleware' => ['guest'],
+	]);
+
+Route::post('/registro', [
+    
+    'uses' => '\NeewBee\Http\Controllers\AuthController@datosRegistro',
+    'middleware' => ['guest'],
+	]);

@@ -27,7 +27,7 @@
 				<li><a href="#">Actualizar Perfil</a></li>
 				<li><a href="#">Salir</a></li>
 			<!--@else-->
-				<li><a href="#">Registro</a></li>
+				<li><a href="{{ route('auth.registro') }}">Registro</a></li>
 				<li><a href="#">Login</a></li>
 		    <!--@endif-->
 			</ul>
