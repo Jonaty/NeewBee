@@ -53,5 +53,42 @@ class User extends Model implements AuthenticatableContract
  }
 
 
+/*Solicitudes de Amistad */
+
+  public function solicitudesAmigos()
+  {
+  	return $this->misAmigos()->wherePivot('aceptacion', false)->get();
+  }
+
+  public function solicitudesAmigosPendientes()
+  {
+  	return $this->amigoDe()->wherePivot('aceptacion', false)->get();
+  }
+
+  public function tenerSolicitudesAmigosPendientes(User $user)
+  {
+  	return (bool) $this->solicitudesAmigosPendientes()->where('id', $user->id)->count();
+  }
+
+  public function tenerSolicitudesAmigosRecibidas(User $user)
+  {
+  	return (bool) $this->solicitudesAmigos()->where('id', $user->id)->count();
+  }
+
+  public function agregarAmigos(User $user)
+  {
+  	$this->amigoDe()->attach($user->id);
+  }
+
+  public function aceptarSolicitudAmigos(User $user)
+  { 
+
+  $this->solicitudesAmigos()->where('id', $user->id)->first()->pivot->update(['aceptacion' => true, ]);
+  }
+
+  public function tieneAmigosCon(User $user)
+  {
+  	return (bool) $this->amigos()->where('id', $user->id)->count();
+  }
 
 }

@@ -108,3 +108,22 @@ Route::get('/amigos/agregar/{nombre}', [
     'as' => 'amigos.agregar',
     'middleware' => ['auth'],
     ]);
+
+/* Aceptar solicitud de amistad */
+
+Route::get('/amigos/aceptar/{nombre}', [
+
+    'uses' => '\NeewBee\Http\Controllers\AmigoController@aceptarAmigo',
+    'as' => 'amigos.aceptar',
+    'middleware' => ['auth'],
+    ]);
+
+/* Publicaciones */
+
+Route::post('/publicar', [
+
+     'uses' => '\NeewBee\Http\Controllers\PublicacionController@publicarAlgo',
+     'as' => 'posteo',
+     'middleware' => ['auth'],
+    ]);
+

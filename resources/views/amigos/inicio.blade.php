@@ -25,7 +25,15 @@
 	<div class="col-lg-6">
 		<h3>Solicitudes de Amigos</h3>
 		<!-- Lista de solicitudes de amigos -->
+        
+        @if(!$solicitudes->count())
+		<p>No tienes solicitudes de amigos</p>
 
+		@else
+		  @foreach($solicitudes as $user)
+		     @include('usuario.partials.usuarioblock')
+		  @endforeach
+		@endif
 
 
 	</div>
