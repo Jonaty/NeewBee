@@ -28,4 +28,14 @@ class User extends Model implements AuthenticatableContract
   }
 
 
+/* Foto de perfil */
+
+   public function avatarUrl()
+ {
+ 	return "https://www.gravatar.com/avatar/{{ md5($this->email)}}?d=mm&s=40";
+
+}
+
+
+
 }

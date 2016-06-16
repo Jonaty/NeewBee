@@ -1,6 +1,6 @@
 <div class="media">
 	<a href="#" class="pull-left">
-		<img src="#" alt="{{ $user->nombre() }}" class="media-object">
+		<img src="{{ $user->avatarUrl() }}" alt="{{ $user->nombre() }}" class="media-object">
 	</a>
 
 	<div class="media-body">
