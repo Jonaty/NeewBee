@@ -62,3 +62,11 @@ Route::get('/salir', [
     'as' => 'salir',
     ]);
 
+/* Buscar */
+
+Route::get('/buscar', [
+
+    'uses' => '\NeewBee\Http\Controllers\BuscarController@obtenerResultados',
+    'as' => 'buscar.resultados',
+    ]);
+
