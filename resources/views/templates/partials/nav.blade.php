@@ -7,7 +7,7 @@
 		<div class="collapse navbar-collapse">
 			@if(Auth::check())
 			<ul class="nav navbar-nav">
-				<li><a href="{{ route('home') }}">Timeline</a></li>
+				<li><a href="{{ route('home') }}">Inicio</a></li>
 				<li><a href="{{ route('amigos.inicio') }}">Amigos</a></li>
 			</ul>
 
