@@ -66,7 +66,20 @@ class AmigoController extends Controller
         Auth::user()->aceptarSolicitudAmigos($user);
 
         return redirect()->route('usuario.perfil', ['nombre' => $nombre])->with('info', 'Solicitud de amistad aceptada');
+    }
 
+    public function eliminarAmigo($nombre)
+    {
+      $user = User::where('nombre', $nombre)->first();
+
+      if(!Auth::user()->tieneAmigosCon($user))
+        {
+            return redirect()->back();
+        }
+
+        Auth::user()->eliminarAmigo($user);
+
+        return redirect()->back()->with('info', 'Amigo Eliminado');
     }
 
 

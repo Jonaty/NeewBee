@@ -145,4 +145,13 @@ Route::get('/publicar/{statusId}/like', [
      'middleware' => ['auth'],
     ]);
 
+/* Eliminar Amigos */
+
+Route::post('/amigos/eliminar/{nombre}', [
+
+    'uses' => '\NeewBee\Http\Controllers\AmigoController@eliminarAmigo',
+    'as' => 'amigos.eliminar',
+    'middleware' => ['auth'],
+    ]);
+
 

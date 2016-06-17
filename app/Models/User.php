@@ -91,6 +91,14 @@ class User extends Model implements AuthenticatableContract
   	$this->amigoDe()->attach($user->id);
   }
 
+  /* Eliminar Amigos */
+
+  public function eliminarAmigo(User $user)
+  {
+    $this->amigoDe()->detach($user->id);
+    $this->misAmigos()->detach($user->id);
+  }
+
   public function aceptarSolicitudAmigos(User $user)
   { 
 
@@ -104,7 +112,7 @@ class User extends Model implements AuthenticatableContract
 
   public function tenerMeGusta(Publicacion $publicacion)
   {
-     return (bool) $publicacion->likes->where('like_id', $publicacion->id)->where('like_type', get_class($publicacion))->where('usuario_id', $this->id)->count();
+     return (bool) $publicacion->likes->where('user_id', $this->id)->count();
   }
 
 }

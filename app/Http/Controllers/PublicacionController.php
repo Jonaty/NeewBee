@@ -62,7 +62,7 @@ class PublicacionController extends Controller
 
       if(!Auth::user()->tieneAmigosCon($publicacion->usuario))
       {
-        return redirect()->route('home');
+        return redirect()->route('home')->with('info', 'No puedes darle me gusta, aún no son amigos');
       }
 
       if(Auth::user()->tenerMeGusta($publicacion))

@@ -106,6 +106,11 @@
 	<br>
 	   <p>Tú y {{ $user->nombre() }} son amigos</p>
 
+       <form action="{{ route('amigos.eliminar', ['nombre' => $user->nombre]) }}" method="post">
+           <input type="submit" value="Eliminar Amigo" class="btn btn-danger">
+           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+       </form>
+
     <!-- Boton para agregar a un usuario como amigo -->
 	 @elseif(Auth::user()->id !== $user->id)
 	 <br>
