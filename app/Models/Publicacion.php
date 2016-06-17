@@ -24,6 +24,11 @@ class Publicacion extends Model
   {
   	return $this->hasMany('NeewBee\Models\Publicacion', 'parent_id');
   }
+
+  public function likes()
+  {
+    return $this->morphMany('NeewBee\Models\Like', 'like');
+  }
 }
 
 ?>
