@@ -52,8 +52,10 @@
 
                 @if($publicacion->usuario->id !== Auth::user()->id)
          		<li><a href="{{ route('posteo.like', ['statusId' => $publicacion->id]) }}">Me gusta</a></li>
-         		<li>10 Me gusta</li>
+
                 @endif
+
+                <li>{{ $publicacion->likes->count() }} {{ str_plural('like', $publicacion->likes->count()) }}</li>
          	</ul>
          
          @foreach($publicacion->respuestas as $respuesta)
@@ -71,8 +73,9 @@
                     @if($respuesta->usuario->id !== Auth::user()->id)
          			<li><a href="{{ route('posteo.like', ['statusId' => $respuesta->id]) }}
 ">Me gusta</a></li>
-         			<li>10 Me gusta</li>
                     @endif
+
+                    <li>{{ $respuesta->likes->count() }} {{ str_plural('like', $respuesta->likes->count()) }}</li>
          		</ul>
          	</div>
          </div>
