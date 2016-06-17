@@ -4,8 +4,9 @@
 	<meta charset="UTF-8">
 	<title>@yield('title', 'Default') | NeewBee</title>
 	<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
 </head>
-<body style="background:#F2F2F2;">
+<body style="background:#F2F2F2; font-family: 'Signika', sans-serif;">
 	
 	@include('templates.partials.nav')
 	<div class="container">
