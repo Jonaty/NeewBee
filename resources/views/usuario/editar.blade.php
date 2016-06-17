@@ -204,8 +204,16 @@
 				</div>
 			</div>
 
+          <a href="{{ route('usuario.curriculum') }}" class="btn btn-info glyphicon glyphicon-download-alt"> <strong>Ver Curriculum</strong> </a>
+
+          <a href="{{ route('pdf.curriculum') }}" class="btn btn-primary glyphicon glyphicon-download-alt"> <strong>Descargar Curriculum</strong> </a>
+
+
+         
 			<input type="hidden" name="_token" value="{{ Session::token() }}">
 		</form>
 	</div>
 </div>
+
+
 @endsection

@@ -154,4 +154,21 @@ Route::post('/amigos/eliminar/{nombre}', [
     'middleware' => ['auth'],
     ]);
 
+/* Curriculum */
+
+Route::get('/curriculum', [
+
+    'uses' => '\NeewBee\Http\Controllers\CurriculumController@index',
+    'as' => 'usuario.curriculum',
+    'middleware' => ['auth'],
+    ]);
+
+/* PDF */
+
+Route::get('/pdf', [
+
+     'uses' => '\NeewBee\Http\Controllers\PdfController@verpdf',
+     'as' => 'pdf.curriculum',
+    ]);
+
 

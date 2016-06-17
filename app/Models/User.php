@@ -115,4 +115,146 @@ class User extends Model implements AuthenticatableContract
      return (bool) $publicacion->likes->where('user_id', $this->id)->count();
   }
 
+  /* Datos generales */
+
+public function edad()
+{
+  if($this->edad)
+  {
+    return "{$this->edad}";
+  }
+}
+
+public function est_civ()
+{
+  if($this->est_civ)
+  {
+    return "{$this->est_civ}";
+  }
+}
+
+public function nacionalidad()
+{
+  if($this->nacionalidad)
+  {
+    return "{$this->nacionalidad}";
+  }
+}
+
+public function direccion()
+{
+  if($this->direccion)
+  {
+    return "{$this->direccion}";
+  }
+}
+
+public function email()
+{
+  if($this->email)
+  {
+    return "{$this->email}";
+  }
+}
+
+public function telefono()
+{
+  if($this->telefono)
+  {
+    return "{$this->telefono}";
+  }
+}
+
+public function tel_contacto()
+{
+  if($this->telefono)
+  {
+    return "{$this->tel_contacto}";
+  }
+}
+
+/* Info academica */
+
+public function niv_acad()
+{
+  if($this->niv_acad)
+  {
+    return "{$this->niv_acad}";
+  }
+}
+
+public function carrera()
+{
+  if($this->carrera)
+  {
+    return "{$this->carrera}";
+  }
+}
+
+public function ocupacion()
+{
+  if($this->ocupacion)
+  {
+    return "{$this->ocupacion}";
+  }
+}
+
+public function nombre_ocup()
+{
+  if($this->nombre_ocup)
+  {
+    return "{$this->nombre_ocup}";
+  }
+}
+
+/*Cursos*/
+
+public function cursos()
+{
+  if($this->cursos)
+  {
+    return "{$this->cursos}";
+  }
+}
+
+/* Certificaciones */
+
+public function certificaciones()
+{
+  if($this->certificaciones)
+  {
+    return "{$this->certificaciones}";
+  }
+}
+
+/* Idiomas */
+
+public function idiomas()
+{
+  if($this->idiomas)
+  {
+    return "{$this->idiomas}";
+  }
+}
+
+/*Aptitudes */
+
+public function aptitudes()
+{
+  if($this->aptitudes)
+  {
+    return "{$this->aptitudes}";
+  }
+}
+
+/* Info adicional */
+
+public function info_adic()
+{
+  if($this->info_adic)
+  {
+    return "{$this->info_adic}";
+  }
+}
+
 }
