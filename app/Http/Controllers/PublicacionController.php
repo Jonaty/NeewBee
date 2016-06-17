@@ -30,14 +30,14 @@ class PublicacionController extends Controller
             'required' => 'El comentario es requerido'
             ]);
 
-          $status = Publicacion::notReply()->find($statusId);
+          $publicacion = Publicacion::notReply()->find($statusId);
 
-          if(!$status)
+          if(!$publicacion)
           {
           	return redirect()->route('home');
           }
 
-          if(!Auth::user()->tieneAmigosCon($status->usuario) && Auth::user()->id !== $status->usuario->id)
+          if(!Auth::user()->tieneAmigosCon($publicacion->usuario) && Auth::user()->id !== $publicacion->usuario->id)
           {
           	return redirect()->route('home');
           }
@@ -46,8 +46,34 @@ class PublicacionController extends Controller
             'publicacion' => $request->input("reply-{$statusId}"),
     		])->usuario()->associate(Auth::user());
 
-    	$status->respuestas()->save($respuesta);
+    	$publicacion->respuestas()->save($respuesta);
 
     	return redirect()->back();
+    }
+
+    public function obtenerMeGusta($statusId)
+    {
+      $publicacion = Publicacion::find($statusId);
+
+      if(!$publicacion)
+      {
+        return redirect()->route('home');
+      }
+
+      if(!Auth::user()->tieneAmigosCon($publicacion->usuario))
+      {
+        return redirect()->route('home');
+      }
+
+      if(Auth::user()->tenerMeGusta($publicacion))
+      {
+        return redirect()->back();
+      }
+
+      $like = $publicacion->likes()->create([]);
+
+      Auth::user()->likes()->save($like);
+
+      return redirect()->back();
     }
 }

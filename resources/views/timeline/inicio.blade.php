@@ -49,8 +49,11 @@
          	<p>{{ $publicacion->publicacion }}</p>
          	<ul class="list-inline">
          		<li>{{ $publicacion->created_at->diffForHumans() }}</li>
-         		<li><a href="#">Me gusta</a></li>
+
+                @if($publicacion->usuario->id !== Auth::user()->id)
+         		<li><a href="{{ route('posteo.like', ['statusId' => $publicacion->id]) }}">Me gusta</a></li>
          		<li>10 Me gusta</li>
+                @endif
          	</ul>
          
          @foreach($publicacion->respuestas as $respuesta)
@@ -64,8 +67,12 @@
          		<p>{{ $respuesta->publicacion }}</p>
          		<ul class="list-inline">
          			<li>{{ $respuesta->created_at->diffForHumans() }}</li>
-         			<li><a href="">Like</a></li>
+
+                    @if($respuesta->usuario->id !== Auth::user()->id)
+         			<li><a href="{{ route('posteo.like', ['statusId' => $respuesta->id]) }}
+">Me gusta</a></li>
          			<li>10 Me gusta</li>
+                    @endif
          		</ul>
          	</div>
          </div>

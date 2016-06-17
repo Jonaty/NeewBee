@@ -2,6 +2,7 @@
 
 namespace NeewBee\Models;
 
+use NeewBee\Models\Publicacion;
 use NeewBee\Models\User;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -38,6 +39,11 @@ class User extends Model implements AuthenticatableContract
  public function publicaciones()
  {
   return $this->hasMany('NeewBee\Models\Publicacion', 'usuario_id');
+ }
+
+ public function likes()
+ {
+  return $this->hasMany('NeewBee\Models\Like', 'usuario_id');
  }
 
  /* Relacion de amigos */
@@ -94,6 +100,11 @@ class User extends Model implements AuthenticatableContract
   public function tieneAmigosCon(User $user)
   {
   	return (bool) $this->amigos()->where('id', $user->id)->count();
+  }
+
+  public function tenerMeGusta(Publicacion $publicacion)
+  {
+     return (bool) $publicacion->likes->where('like_id', $publicacion->id)->where('like_type', get_class($publicacion))->where('usuario_id', $this->id)->count();
   }
 
 }

@@ -4,7 +4,7 @@ namespace NeewBee\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Like extends Models
+class Like extends Model
 {
 	protected $table = "like";
 

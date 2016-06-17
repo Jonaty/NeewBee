@@ -136,4 +136,13 @@ Route::post('/publicar/{statusId}/respuesta', [
      'middleware' => ['auth'],
     ]);
 
+/* Likes */
+
+Route::get('/publicar/{statusId}/like', [
+
+     'uses' => '\NeewBee\Http\Controllers\PublicacionController@obtenerMeGusta',
+     'as' => 'posteo.like',
+     'middleware' => ['auth'],
+    ]);
+
 
